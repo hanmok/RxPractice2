@@ -18,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		1B5E93DD99FB61A0ACF8DB15 /* Pods_RxPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22244D5E286001E100B3D03C /* Subject.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Subject.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22244D5F286001FD00B3D03C /* Observable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Observable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		33FAD0F7983874154B2D2DC1 /* Pods-RxPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxPractice.release.xcconfig"; path = "Target Support Files/Pods-RxPractice/Pods-RxPractice.release.xcconfig"; sourceTree = "<group>"; };
 		8D19624CCF306EF1847CA3BA /* Pods-RxPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxPractice.debug.xcconfig"; path = "Target Support Files/Pods-RxPractice/Pods-RxPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9AD2FB63285F5CEB0075551B /* RxPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				9AD2FB6F285F5CEE0075551B /* Assets.xcassets */,
 				9AD2FB7A285F5E680075551B /* Pratices */,
 				9AD2FB71285F5CEE0075551B /* LaunchScreen.storyboard */,
+				22244D5F286001FD00B3D03C /* Observable.playground */,
 				9AD2FB74285F5CEE0075551B /* Info.plist */,
 			);
 			path = RxPractice;
@@ -99,6 +102,7 @@
 			children = (
 				9AD2FB7B285F5EA00075551B /* Filtering(Chap5).playground */,
 				9AD2FB7C285F95E80075551B /* Transforming(Chap7).playground */,
+				22244D5E286001E100B3D03C /* Subject.playground */,
 			);
 			path = Pratices;
 			sourceTree = "<group>";

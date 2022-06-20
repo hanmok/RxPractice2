@@ -258,7 +258,8 @@ example(of: "Challenge 122") {
       phone.startIndex,
       offsetBy: 7)
     )
-    
+
+      
     return phone
   }
   

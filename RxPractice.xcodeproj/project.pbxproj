@@ -89,9 +89,8 @@
 				9AD2FB6A285F5CEB0075551B /* ViewController.swift */,
 				9AD2FB6C285F5CEB0075551B /* Main.storyboard */,
 				9AD2FB6F285F5CEE0075551B /* Assets.xcassets */,
-				9AD2FB7A285F5E680075551B /* Pratices */,
 				9AD2FB71285F5CEE0075551B /* LaunchScreen.storyboard */,
-				22244D5F286001FD00B3D03C /* Observable.playground */,
+				9AD2FB7A285F5E680075551B /* Pratices */,
 				9AD2FB74285F5CEE0075551B /* Info.plist */,
 			);
 			path = RxPractice;
@@ -100,9 +99,10 @@
 		9AD2FB7A285F5E680075551B /* Pratices */ = {
 			isa = PBXGroup;
 			children = (
+				22244D5E286001E100B3D03C /* Subject.playground */,
+				22244D5F286001FD00B3D03C /* Observable.playground */,
 				9AD2FB7B285F5EA00075551B /* Filtering(Chap5).playground */,
 				9AD2FB7C285F95E80075551B /* Transforming(Chap7).playground */,
-				22244D5E286001E100B3D03C /* Subject.playground */,
 			);
 			path = Pratices;
 			sourceTree = "<group>";

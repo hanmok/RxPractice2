@@ -385,3 +385,87 @@ example(of: "Challenge 1") {
   
   input.onNext(9)
 }
+
+}
+
+
+// MARK: - Chap 6: Filtering Operators in Practice
+    
+//    In the previous chapter, you began your introduction to the functional aspect of RxSwift. The first batch of operators you learned about helped you filter the elements of an observable sequence.
+//    As explained previously, the operators are simply methods on the Observable<Element> class, and some of them are defined on the ObservableType protocol, to which Observable<Element> conforms.
+//    The operators operate on the elements of their Observable class and produce a new observable sequence as a result. This comes in handy because, as you saw previously, this allows you to chain operators, one after another, and perform several transformations in sequence:
+
+
+// MARK: - Share
+    
+//    Sharing subscriptions
+//    Is there anything wrong with calling subscribe(...) on the same observable multiple times? Turns out there might be!
+//    I’ve already mentioned that observables are lazy, pull-driven sequences. Simply calling a bunch of operators on an Observable doesn’t involve any actual work. The moment you call subscribe(...) directly on an observable or on one of the operators applied to it, that’s when the Observable livens up and starts producing elements.
+//
+//
+//    To do that, the observable calls its create closure each time you subscribe to it. in some situations, this might produce some bedazzling effects!
+//    Take a look at the code below; you can type it in a Playground if you want to follow:
+                                                                            
+    /*
+     let numbers = Observable<Int>.create { observer in
+     let start = getStartNumber()
+     observer.onNext(start)
+     observer.onNext(start+1)
+     observer.onNext(start+2)
+     observer.onCompleted()
+     return Disposables.create()
+     }
+     */
+                                                                        
+//    The code creates an Observable<Int>, which produces a sequence of three numbers: start, start+1, start+2.
+//    Now see what getStartNumber() looks like:
+//    The function increments a variable and returns it; nothing can go wrong there. Or can it? Add a subscription to numbers and see for yourself:
+                                                                                                                                                
+    /*
+     var start = 0
+     func getStartNumber() -> Int {
+     start += 1
+     return start
+     }
+     numbers
+     .subscribe(
+     onNext: { el in
+     print("element [\(el)]")
+     },
+     onCompleted: {
+     print("-------------")
+     }
+     )
+     */
+    
+    
+//    You will get the exact output you expected. Yay!
+//    Copy and paste the exact same subscription code one more time though, and this time the output is different.
+    /*
+    element [1]
+    element [2]
+    element [3]
+    -------------
+     
+     
+     
+    element [1]
+    element [2]
+    element [3]
+    -------------
+    element [2]
+    element [3]
+    element [4]
+    -------------
+     */
+//    The problem is that each time you call subscribe(...), this creates a new Observable for that subscription — and each copy is not guaranteed to be the same as the previous. And even when the Observable does produce the same sequence of elements, it’s overkill to produce those same duplicate elements for each subscription. There’s no point in doing that.
+//    To share a subscription, you can use the share() operator. A common pattern in Rx code is to create several sequences from the same source Observable by filtering out different elements in each of the results.
+//    You’ll use share in a practical example in Combinestagram to understand its purpose a bit better.
+                                                                                                
+//    a second subscription to newPhotos and filter out some of the elements you don’t need.
+
+//    Before moving on though, it's important to learn a bit more about how share works. share (and its specializations via parameters) create a subscription only when the number of subscribers goes from 0 to 1 (i.e., when there isn't a shared subscription already). When a second, third and so on subscribers start observing the sequence, share uses the already created subscription to share with them. If all subscriptions to the shared sequence get disposed (e.g. there are no more subscribers), share will dispose the shared sequence as well. If another subscriber starts observing, share will create a new subscription for it just like described above.
+
+//    Note: share() does not provide any of the subscriptions with values emitted before the subscription takes effect. share(replay:scope:), on the other hand, keeps a buffer of the last few emitted values and can provide them to new observers upon subscription.
+
+//    The rule of thumb about sharing operators is that it's safe to use share() with observables that do not complete, or if you guarantee no new subscriptions will be made after completion. If you want piece of mind, use share(replay: 1) - you'll learn more about this in Chapter 8, “Transforming Operators in Practice.”
